@@ -1,0 +1,16 @@
+import java.util.ArrayList;
+
+public class Solution {
+	public static ArrayList<Integer> rotateArray(ArrayList<Integer> arr, int k) {
+        // Write your code here.
+        ArrayList<Integer> rotatedArray = new ArrayList<>();
+        for (int i = 0; i < arr.size(); i++) {
+            if (i+k > arr.size() - 1) {
+                rotatedArray.add(i, arr.get(i+k - arr.size()));
+            } else {
+                rotatedArray.add(i, arr.get(i+k));
+            }
+        }
+        return rotatedArray;
+    }
+}
