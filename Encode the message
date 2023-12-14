@@ -1,0 +1,22 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static String encode(String message) {
+		// Write your code here.
+		int n = message.length();
+		if(n == 0) return message;
+		int count = 1;
+		Character start = message.charAt(0);
+		StringBuilder output = new StringBuilder();
+		for (int i = 1; i < n; i++) {
+			if (message.charAt(i)== start) {
+				count++;
+			} else {
+				output.append(start + Integer.toString(count));
+				count = 1;
+			}
+			start = message.charAt(i);
+		}
+		return output.append(start + Integer.toString(count)).toString();
+	}
+}
