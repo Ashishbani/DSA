@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+class Solution {
+
+    static String reverseStringWordWise(String input) {
+        // Write your code here
+        String[] inputList = input.split(" ");
+        int n = inputList.length;
+        String[] outputList = new String[n];
+        for (int i = 0; i<n; i++) {
+            outputList[i] = inputList[n-1-i];
+        }
+        return String.join(" ", outputList);
+    }
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        String ans = reverseStringWordWise(input);
+        System.out.println(ans);
+    }
+}
