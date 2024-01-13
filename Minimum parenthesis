@@ -1,0 +1,23 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int minimumParentheses(String pattern) {
+		// Write your code here.
+		int n = pattern.length();
+		int openBracket = 0;
+		int closeBracket = 0;
+		for (int i = 0; i < n; i++) {
+			if (pattern.charAt(i) == ')') {
+				if (openBracket > 0) {
+					openBracket--;
+				} else {
+					closeBracket++;
+				}
+			} else {
+				openBracket++;
+			}
+			 
+		}
+		return openBracket+closeBracket;
+	}
+}
