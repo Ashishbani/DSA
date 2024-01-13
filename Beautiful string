@@ -1,0 +1,19 @@
+public class Solution {
+    public static int makeBeautiful(String str) {
+        int size = str.length();
+        int count = 0;
+        char starting = str.charAt(0);
+        for (int i = 1; i < size; i++) {
+            if (starting == '0') {
+                starting = '1';
+            } else {
+                starting = '0';
+            }
+            if (str.charAt(i) != starting) {
+                count++;
+            }
+        }
+        int total = size - count;
+        return total > count ? count : total;
+    }
+}
