@@ -1,0 +1,41 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static String nextLargestPalindrome(String number, int length) {
+		// Write your code here.
+		if (length % 2 != 0) {
+			int middleNum = number.charAt(length/2) - '0';
+			if (middleNum != 9) {
+				return getModifiedString(number, middleNum, length, true);
+			} else {
+				int n = Integer.parseInt(number.substring(0, (length /2))) + 1;
+				String s1 = Integer.toString(n);
+				StringBuilder s2 = new StringBuilder(s1).reverse();
+				String x = s1 + s2.toString();
+				if (x.length() < number.length()) {
+					return s1 + '0' +s2.toString();
+				}
+				return x;
+			}
+		} else {
+			int start = Integer.parseInt(number.substring(0, length/2));
+			return getModifiedString(number, start, length, false);
+		}
+	}
+
+	public static String getModifiedString(String inpuString, int number, int length, boolean isOdd) {
+		String firstHalf = inpuString.substring(0, (length /2));
+		StringBuilder reverseHalf = new StringBuilder(firstHalf).reverse();
+		String modString = isOdd ? firstHalf + Integer.toString(number) + reverseHalf.toString() : firstHalf + reverseHalf.toString();
+		if (Long.parseLong(modString) <= Long.parseLong(inpuString)) {
+			number++;
+		}
+		if (isOdd) {
+			return firstHalf + Integer.toString(number) + reverseHalf.toString();
+		} else {
+			String s1 = Integer.toString(number);
+			StringBuilder s2 = new StringBuilder(s1).reverse();
+			return s1 + s2.toString();
+		}
+	}
+}
