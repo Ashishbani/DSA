@@ -1,3 +1,4 @@
+//Not completely optimised code
 import java.util.* ;
 import java.io.*; 
 public class Solution {
@@ -37,5 +38,58 @@ public class Solution {
 			StringBuilder s2 = new StringBuilder(s1).reverse();
 			return s1 + s2.toString();
 		}
+	}
+}
+
+
+//Another optimised code but having failing test cases
+
+import java.util.* ;
+import java.io.*;
+import java.math.BigInteger; 
+public class Solution {
+	public static String nextLargestPalindrome(String number, int length) {
+		// Write your code here.
+        StringBuilder s1 = new StringBuilder();
+        int middle = -1;
+        String string = "";
+        if (number.length() == 1) {
+            int num = Integer.parseInt(number) + 1;
+            return String.valueOf(num);
+        }
+        if (length % 2 == 0) {
+            s1.append(number.substring(0, length/2));
+            string = s1.toString() + s1.reverse().toString();
+        } else {
+            s1.append(number.substring(0, length/2));
+            middle = number.charAt(length/2) - '0';
+            string = s1.toString()+Integer.toString(middle)+s1.reverse().toString();
+        }
+        int result = number.compareTo(string);
+        if (result >= 0) {
+            BigInteger b1 = new BigInteger(s1.reverse().toString());
+            StringBuilder s2 = new StringBuilder();
+            if (length % 2 == 0) {
+                b1 = b1.add(BigInteger.ONE);
+                s2.append(b1.toString());
+                return b1.toString() + s2.reverse().toString();
+            } else {
+                if (middle == 9) {
+                    b1 = b1.add(BigInteger.ONE);
+                    s2.append(b1.toString());
+                    if (b1.toString().length() > s1.length()) {
+                        return b1.toString() + s2.reverse().toString();
+                    } else {
+                        return b1.toString() + "0" + s2.reverse().toString();
+                    }
+                } else {
+                    s2.append(b1.toString());
+                    return b1.toString() + Integer.toString(middle + 1) + s2.reverse().toString();
+                }
+            }
+        } else {
+            return string;
+        }
+        
 	}
 }
